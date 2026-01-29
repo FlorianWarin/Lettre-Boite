@@ -1,13 +1,26 @@
+import { useNavigate } from 'react-router-dom'
+
 interface MainMenuButtonProps {
     image?: string;
     text: string;
     onClick?: () => void;
+    route?: string;
 }
 
-const mainMenuButton = ({ image, text, onClick }: MainMenuButtonProps) => {
+const mainMenuButton = ({ image, text, onClick, route }: MainMenuButtonProps) => {
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        if (onClick) {
+            onClick()
+        } else if (route) {
+            navigate(route)
+        }
+    }
+
     return (
         <button
-            onClick={onClick}
+            onClick={handleClick}
             style={{
                 display: 'flex',
                 flexDirection: 'column',
