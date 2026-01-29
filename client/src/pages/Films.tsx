@@ -1,7 +1,13 @@
 import { useNavigate } from 'react-router-dom'
+import SearchBarre from '../Components/searchBarre'
 
 const Films = () => {
   const navigate = useNavigate()
+
+  const handleSearch = (searchTerm: string) => {
+    console.log(searchTerm)
+  }
+
 
   return (
     <div className="min-h-screen p-6 flex flex-col">
@@ -21,12 +27,9 @@ const Films = () => {
       >
         ← Retour
       </button>
-      <div className="flex flex-1 items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 style={{ fontSize: '48px', fontWeight: 'bold', color: 'black' }}>Films</h1>
-          <p style={{ fontSize: '18px', marginTop: '20px' }}>Contenu des films à venir...</p>
-        </div>
-      </div>
+      <h1 style={{ fontSize: '48px', fontWeight: 'bold', color: 'black', textAlign: 'center' }}>Films</h1>
+      <SearchBarre placeholder="Rechercher des films..." onSearch={handleSearch} />
+      
     </div>
   )
 }
