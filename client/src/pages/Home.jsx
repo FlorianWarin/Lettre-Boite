@@ -1,17 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
-import MainMenuButton from './Components/mainMenuButton'
-import Films from './pages/Films'
-import Series from './pages/Series'
-import Livres from './pages/Livres'
-import Musique from './pages/Musique'
-import JeuxVideos from './pages/JeuxVideos'
+import { useState,useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import MainMenuButton from '../Components/mainMenuButton';
 
-type Priority = 'Urgente' | 'Moyenne' | 'Basse'
-type Todo = {
-  id: number
-  title: string
-  priority : Priority
-}
+
 
 function Home() {
   return (
@@ -30,17 +21,5 @@ function Home() {
   )
 }
 
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/films" element={<Films />} />
-      <Route path="/series" element={<Series />} />
-      <Route path="/livres" element={<Livres />} />
-      <Route path="/musique" element={<Musique />} />
-      <Route path="/jeux-videos" element={<JeuxVideos />} />
-    </Routes>
-  )
-}
 
-export default App
+export default Home;
