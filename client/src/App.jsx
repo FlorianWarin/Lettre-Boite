@@ -6,6 +6,7 @@ import Livres from './pages/Livres'
 import Musique from './pages/Musique'
 import JeuxVideos from './pages/JeuxVideos'
 import Home from './pages/Home'
+import DetailsFilms from './pages/DetailsFilms'
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/livres" element={<Livres />} />
         <Route path="/musique" element={<Musique />} />
         <Route path="/jeux-videos" element={<JeuxVideos />} />
+        <Route path="/films/:id" element={<DetailsFilms />} />
       </Routes>
     </BrowserRouter>
   )

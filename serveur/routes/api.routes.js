@@ -2,7 +2,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.get('/api/search', async (req,res) => {
+router.get('/search', async (req,res) => {
 
     const query = req.query.q;
 
