@@ -61,7 +61,7 @@ const Films = () => {
           {movies.map((movie) => (
             <div 
               key={movie['#IMDB_ID']}
-              onClick={() => navigate(`/films/${movie['#IMDB_ID']}`)}
+              onClick={() => navigate(`/film/${movie['#IMDB_ID']}`, { state: { movieData: movie } })}
               style={{
                 display: 'flex',
                 alignItems: 'center',

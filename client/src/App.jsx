@@ -20,7 +20,7 @@ function App() {
         <Route path="/livres" element={<Livres />} />
         <Route path="/musique" element={<Musique />} />
         <Route path="/jeux-videos" element={<JeuxVideos />} />
-        <Route path="/films/:id" element={<DetailsFilms />} />
+        <Route path="/film/:id" element={<DetailsFilms />} />
       </Routes>
     </BrowserRouter>
   )
