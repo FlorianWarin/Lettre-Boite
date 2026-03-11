@@ -51,13 +51,7 @@ const Films = () => {
         <h1 style={{ fontSize: '48px', fontWeight: 'bold', color: 'black', textAlign: 'center' }}>Films</h1>
         <SearchBarre placeholder="Rechercher des films..." onSearch={handleSearch}/>
 
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'center', 
-          width: '100%', 
-          marginTop: '10px' 
-        }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '10px' }}>
           {movies.map((movie) => (
             <div 
               key={movie['#IMDB_ID']}

@@ -45,7 +45,10 @@ const DetailsFilms = () => {
 
         
         
-        if (response.ok) {console.log("Données sauvegardées")}
+        if (response.ok) {
+          console.log("Données sauvegardées")
+          alert("Avis sauvegardé")
+        }
 
       }catch(error) {
         console.error(error)

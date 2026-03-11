@@ -33,6 +33,25 @@ router.post(`/postreview/:movieID`, async(req,res) => {
 
 })
 
+router.get(`/getreviews/:name`, async(req,res) => {
+
+    const name = req.params.name
+
+    try{
+        const response = await saveReview.find({userName: name})
+
+        if(response) {
+            res.status(200).json(response);
+        }else {
+            res.status(404).end();
+        }
+
+    }catch(error){
+        console.error(error)
+    }
+
+})
+
 
 
 export default router;
