@@ -95,7 +95,7 @@ const Films = () => {
       </div>
 
       <button
-        onClick={() => navigate('/')}
+        onClick={() => navigate("/reviewsfilm")}
         style={{
           padding: '10px 20px',
           backgroundColor: '#af7933',

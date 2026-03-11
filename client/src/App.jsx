@@ -7,6 +7,7 @@ import Musique from './pages/Musique'
 import JeuxVideos from './pages/JeuxVideos'
 import Home from './pages/Home'
 import DetailsFilms from './pages/DetailsFilms'
+import MesReviewsFilms from './pages/MesReviewsFilms'
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/musique" element={<Musique />} />
         <Route path="/jeux-videos" element={<JeuxVideos />} />
         <Route path="/film/:id" element={<DetailsFilms />} />
+        <Route path="/reviewsfilm" element={<MesReviewsFilms/>} />
       </Routes>
     </BrowserRouter>
   )

@@ -5,15 +5,54 @@ import { useState } from 'react'
 const DetailsFilms = () => {
 
     const { id } = useParams()
-    const [note, setNote] = useState(0);
+    const [note, setNote] = useState(1.5);
     const [commentaire, setCommentaire] = useState("");
 
     const location = useLocation();
     
     const movie = location.state?.movieData;
 
-    
+    const userName = localStorage.getItem("userName")
 
+    const test = () => {
+      console.log(localStorage.getItem("userName"))
+    }
+
+    
+    const saveReview = async (Name,rating, comment, movieID) => {
+
+      if(!rating || !comment || !movieID){
+        console.log("Tous les paramètres ne sont pas remplis: rating: ",rating,"comment: ",comment, "movieID", movieID)
+        return
+      }
+
+      const dataToSend = {
+        userName: Name,
+        movieID: movieID,
+        movieRating: rating,
+        movieReview: comment,
+      }
+
+      try{
+
+        const response = await fetch(`http://localhost:8080/api/postreview/${movieID}`,{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataToSend)
+        });
+
+        
+        
+        if (response.ok) {console.log("Données sauvegardées")}
+
+      }catch(error) {
+        console.error(error)
+
+      }
+
+    }
    
 
 
@@ -71,19 +110,27 @@ const DetailsFilms = () => {
           
           
           <div className="bg-white p-4 rounded-lg self-end border-2 border-black shadow-md">
-            <div className="rating rating-lg gap-2">
-              <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
-              <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" defaultChecked />
+            <div className="rating rating-lg rating-half">
+              <input type="radio" name="rating-11" className="rating-hidden" />
+              <input onChange={() => setNote(0.5)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-1 bg-orange-500" aria-label="0.5 star" />
+              <input onChange={() => setNote(1)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-2 bg-orange-500" aria-label="1 star" />
+              <input onChange={() => setNote(1.5)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-1 bg-orange-500" aria-label="1.5 star" defaultChecked />
+              <input onChange={() => setNote(2)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-2 bg-orange-500" aria-label="2 star" />
+              <input onChange={() => setNote(2.5)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-1 bg-orange-500" aria-label="2.5 star" />
+              <input onChange={() => setNote(3)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-2 bg-orange-500" aria-label="3 star" />
+              <input onChange={() => setNote(3.5)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-1 bg-orange-500" aria-label="3.5 star" />
+              <input onChange={() => setNote(4)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-2 bg-orange-500" aria-label="4 star" />
+              <input onChange={() => setNote(4.5)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-1 bg-orange-500" aria-label="4.5 star" />
+              <input onChange={() => setNote(5)}type="radio" name="rating-11" className="mask mask-star-2 mask-half-2 bg-orange-500" aria-label="5 star" />
             </div>
           </div>
 
           
-          <div className="bg-white border-2 border-black rounded-lg p-8 min-h-[500px] shadow-inner flex items-center justify-center">
-            <p className="text-gray-500 text-xl font-medium">(description)</p>
-          </div>
+          <textarea onChange= {(e) => setCommentaire(e.target.value)} placeholder='Votre avis sur le film...' className=" textarea bg-white w-full border-2 border-black rounded-lg p-8 min-h-[500px] shadow-inner flex items-center justify-center">
+            
+          </textarea>
+
+          <button onClick={() => saveReview(userName,note,commentaire,id)} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl btn-primary">Sauvegarder votre avis</button>
 
         </div>
 
