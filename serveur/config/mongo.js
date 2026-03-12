@@ -19,4 +19,4 @@ const saveReviewSchema = new mongoose.Schema ({
 
 })
 
-export const saveReview = mongoose.model("testSave", saveReviewSchema);
+export const saveReview = mongoose.model("Films", saveReviewSchema);

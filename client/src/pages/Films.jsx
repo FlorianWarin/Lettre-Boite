@@ -69,7 +69,7 @@ const Films = () => {
                 cursor: 'pointer'
               }}
             >
-              {/* Affiche du film */}
+              
               {movie['#IMG_POSTER'] && (
                 <img 
                   src={movie['#IMG_POSTER']} 
@@ -78,7 +78,7 @@ const Films = () => {
                 />
               )}
               
-              {/* Titre et année */}
+              
               <div>
                 <h3 style={{ margin: 0, color: 'black', fontSize: '18px' }}>{movie['#TITLE']}</h3>
                 <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>{movie['#YEAR']}</p>

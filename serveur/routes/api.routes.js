@@ -1,7 +1,11 @@
 import express from "express";
 import { saveReview } from "../config/mongo.js";
+import 'dotenv/config';
 
 const router = express.Router();
+
+const clientId = process.env.TWITCH_CLIENT_ID;
+const clientSecret = process.env.TWITCH_CLIENT_SECRET;
 
 router.get('/search', async (req,res) => {
 
