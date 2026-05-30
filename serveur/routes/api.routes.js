@@ -37,6 +37,26 @@ router.post(`/postreview/:movieID`, async(req,res) => {
 
 })
 
+router.post("/sendtoken", async (req,res) => {
+
+    try {
+      const response = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${import.meta.env.VITE_TWITCH_CLIENT_ID}&client_secret=${import.meta.env.VITE_TWITCH_CLIENT_SECRET}&grant_type=client_credentials`, {
+        method:"POST",
+      })
+      
+      
+    }
+
+    const data = await response.json();
+    
+    console.log("Ton Token Twitch :", data.access_token);
+
+    }catch (e) {
+    console.error(e)
+  }
+
+})
+
 router.get(`/getreviews/:name`, async(req,res) => {
 
     const name = req.params.name

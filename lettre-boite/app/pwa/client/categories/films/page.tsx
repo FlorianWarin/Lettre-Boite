@@ -10,13 +10,14 @@ const Films = () => {
   const router = useRouter()
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [inputValue, setInputValue] = useState('')
 
   const handleSearch = async (searchTerm: string) => {
     if (searchTerm.length < 2) return
     
     setIsLoading(true)
     try {
-      const response = await fetch(`/api/categories/films`, {
+      const response = await fetch(`/api/client/categories/films`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: searchTerm })
@@ -50,7 +51,13 @@ const Films = () => {
         <Input 
           className="mb-8 border-orange-300 focus-visible:ring-orange-500"
           placeholder="Rechercher des films..." 
-          onChange={(e) => handleSearch(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSearch(inputValue)
+            }
+          }}
           disabled={isLoading}
         />
 
@@ -58,7 +65,6 @@ const Films = () => {
           {movies.map((movie) => (
             <div 
               key={movie['#IMDB_ID']}
-              onClick={() => router.push(`/film/${movie['#IMDB_ID']}`)}
               className="flex items-center w-full p-4 bg-orange-100 border-2 border-orange-200 rounded-xl cursor-pointer hover:border-orange-400 transition-colors shadow-sm"
             >
               {movie['#IMG_POSTER'] && (

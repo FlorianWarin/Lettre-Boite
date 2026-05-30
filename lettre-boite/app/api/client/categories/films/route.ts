@@ -1,15 +1,23 @@
+import { NextRequest, NextResponse } from 'next/server';
 
-
-
-export async function POST(req: Request) {
-    const { query } = await req.json();
-
+export async function POST(req: NextRequest) {
     try {
-        const response = await fetch(`https://imdb.iamidiotareyoutoo.com/search?q=${query}`);
-        const results = await response.json();
+        const body = await req.json();
+        const { query } = body;
 
-        return new Response(JSON.stringify(results));
+        if (!query) {
+            return NextResponse.json({ error: 'Query is required' }, { status: 400 });
+        }
+
+        const response = await fetch(`https://imdb.iamidiotareyoutoo.com/search?q=${encodeURIComponent(query)}`);
+        
+        if (!response.ok) {
+            return NextResponse.json({ error: 'Failed to fetch from IMDb' }, { status: response.status });
+        }
+
+        const data = await response.json();
+        return NextResponse.json(data);
     } catch (error) {
-        return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }

@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import SearchBarre from '../Components/searchBarre'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { send } from 'node:process';
 
 const JeuxVideos = () => {
 
+
+ 
 
   const navigate = useNavigate();
 
@@ -11,15 +14,23 @@ const JeuxVideos = () => {
 
   const handleSearch = async (searchTerm) => {
   if (searchTerm.length < 2) return; 
-  try {
-    const response = await fetch(`http://localhost:8080/api/search?q=${searchTerm}`)
-    const results = await response.json()
-    
-    setMovies(results.description || []) 
-  } catch (error) {
-    console.error('Error fetching search results:', error)
+    try {
+      const response = await fetch(`http://localhost:8080/api/search?q=${searchTerm}`)
+      const results = await response.json()
+      
+      setMovies(results.description || []) 
+    } catch (error) {
+      console.error('Error fetching search results:', error)
+    }
   }
-}
+
+  
+  const sendToken = async () => {
+
+    
+  } 
+
+  
 
   
 
@@ -89,7 +100,7 @@ const JeuxVideos = () => {
       </div>
 
       <button
-        onClick={() => navigate("/")}
+        onClick={() => sendToken()}
         style={{
           padding: '10px 20px',
           backgroundColor: '#af7933',
