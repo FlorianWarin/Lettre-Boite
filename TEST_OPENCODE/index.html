@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Opencode?</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 {
+            color: #1a1a1a;
+        }
+        h1 {
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e1e4e8;
+        }
+        .highlight {
+            background-color: #f1f8ff;
+            border-left: 4px solid #0366d6;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        @media (max-width: 600px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        .feature-card {
+            border: 1px solid #e1e4e8;
+            padding: 1.2rem;
+            border-radius: 6px;
+            background-color: #fafbfc;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: #0366d6;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 85%;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6a737d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Understanding Opencode</h1>
+        </header>
+        <main>
+            <section class="intro">
+                <p>Opencode is an advanced, interactive, command-line interface (CLI) agent designed to assist with software engineering tasks autonomously and efficiently. Powered by advanced artificial intelligence models, Opencode is tailored to navigate, understand, modify, and verify codebases with a focus on safety and precision.</p>
+            </section>
+
+            <div class="highlight">
+                <p><strong>Core Mission:</strong> Opencode acts as a highly capable assistant that can autonomously implement features, fix bugs, run test suites, check linter status, and provide comprehensive code explanations directly inside the terminal environment.</p>
+            </div>
+
+            <section>
+                <h2>Key Capabilities</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>Codebase Exploration</h3>
+                        <p>Opencode utilizes specialized tools to find and search files using glob pattern matching and regular expressions across repositories of any size.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Autonomous Implementation</h3>
+                        <p>From writing individual functions to creating complete, fully functional application prototypes, Opencode follows local conventions to build robust software.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Safe Modification</h3>
+                        <p>Edits are performed with precise search-and-replace tools that ensure surrounding context is verified and changes are applied exactly as intended.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Quality Assurance</h3>
+                        <p>Opencode identifies and executes project-specific build tools, linters, and test suites to verify that the changes are stable and robust.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Operational Principles</h2>
+                <ul>
+                    <li><strong>Safety First:</strong> Opencode never introduces modifications or runs commands without clear context and purpose, and actively prevents the leakage of secrets.</li>
+                    <li><strong>Context-Aware:</strong> Rather than making assumptions, Opencode reads files and dependency configurations to understand local patterns, style rules, and library usage.</li>
+                    <li><strong>Direct and Efficient:</strong> Communication is kept concise and professional, prioritizing precise technical action and minimizing conversational noise.</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>Generated by Opencode — Project Workspace Environment</p>
+        </footer>
+    </div>
+</body>
+</html>

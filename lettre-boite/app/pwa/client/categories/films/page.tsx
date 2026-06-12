@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 
-const Films = () => {
+export default function Films() {
+
   const router = useRouter()
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -63,9 +64,8 @@ const Films = () => {
 
         <div className="w-full space-y-4">
           {movies.map((movie) => (
-            <div 
-              key={movie['#IMDB_ID']}
-              className="flex items-center w-full p-4 bg-orange-100 border-2 border-orange-200 rounded-xl cursor-pointer hover:border-orange-400 transition-colors shadow-sm"
+            <Link key={movie['#IMDB_ID']} href={{ pathname: `/pwa/client/categories/films/review/${movie['#IMDB_ID']}`, query: { data: JSON.stringify(movie) } }} className="block">
+            <div key={movie['#IMDB_ID']} className="flex items-center w-full p-4 bg-orange-100 border-2 border-orange-200 rounded-xl cursor-pointer hover:border-orange-400 transition-colors shadow-sm"
             >
               {movie['#IMG_POSTER'] && (
                 <img 
@@ -80,6 +80,7 @@ const Films = () => {
                 <p className="text-sm text-orange-700">{movie['#YEAR']}</p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -87,4 +88,3 @@ const Films = () => {
   )
 }
 
-export default Films
