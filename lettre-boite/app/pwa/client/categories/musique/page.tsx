@@ -12,11 +12,33 @@ export default function Musique() {
   const [inputValue, setInputValue] = useState('')
 
   const handleSearch = async (searchTerm: string) => {
-    if (searchTerm.length < 2) return
+    if (searchTerm.length < 1) return
     
     setIsLoading(true)
-    await new Promise((r) => setTimeout(r, 500))
-    setIsLoading(false)
+    try {
+      const response = await fetch(`/api/client/categories/music`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ albumName: searchTerm })
+      })
+      if (!response.ok) throw new Error('Erreur réseau')
+      
+      const results = await response.json()
+
+      const releases = results.releases ?? [];
+      const seen = new Set();
+      const unique = releases.filter((r) => {
+        const key = `${r.title?.toLowerCase()}|${r['artist-credit']?.[0]?.name?.toLowerCase()}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+      setResults(unique);
+      } catch (error) {
+      console.error('Erreur lors de la récupération:', error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -47,11 +69,12 @@ export default function Musique() {
         />
 
         <div className="w-full space-y-4">
-          {results.map((item, index) => (
-            <div key={index} className="flex items-center w-full p-4 bg-orange-100 border-2 border-orange-200 rounded-xl cursor-pointer hover:border-orange-400 transition-colors shadow-sm">
+          {results.map((item : any) => (
+            <div key={item.id} className="flex items-center w-full p-4 bg-orange-100 border-2 border-orange-200 rounded-xl cursor-pointer hover:border-orange-400 transition-colors shadow-sm">
               <div>
-                <h3 className="font-bold text-lg text-orange-950">{item['#TITLE']}</h3>
-                <p className="text-sm text-orange-700">{item['#YEAR']}</p>
+                <h3 className="font-bold text-lg text-orange-950">{item.title}</h3>
+                <p className="text-sm text-orange-600">{item['artist-credit']?.[0]?.name}</p>
+                <p className="text-sm text-orange-700">{item.date?.split('-')[0]}</p>
               </div>
             </div>
           ))}

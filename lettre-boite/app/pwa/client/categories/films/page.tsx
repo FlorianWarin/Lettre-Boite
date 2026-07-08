@@ -14,7 +14,7 @@ export default function Films() {
   const [inputValue, setInputValue] = useState('')
 
   const handleSearch = async (searchTerm: string) => {
-    if (searchTerm.length < 2) return
+    if (searchTerm.length < 1) return
     
     setIsLoading(true)
     try {
