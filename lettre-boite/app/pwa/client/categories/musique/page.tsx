@@ -5,6 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 
+type Release = {
+  id: string
+  title?: string
+  'artist-credit'?: { name?: string }[]
+  date?: string
+}
+
 export default function Musique() {
 
   const [results, setResults] = useState([])
@@ -27,7 +34,7 @@ export default function Musique() {
 
       const releases = results.releases ?? [];
       const seen = new Set();
-      const unique = releases.filter((r) => {
+      const unique = releases.filter((r: Release) => {
         const key = `${r.title?.toLowerCase()}|${r['artist-credit']?.[0]?.name?.toLowerCase()}`;
         if (seen.has(key)) return false;
         seen.add(key);
